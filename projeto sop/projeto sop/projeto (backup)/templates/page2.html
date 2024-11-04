@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+<meta charset="UTF-8">
+    <meta name="viewporz" content="width=device-width, initial-scale=1.0">
+    <title>site</title>
+    <link rel="stylesheet" href="./../static/css/page2.css">
+</head>
+
+<body>
+    <div id="barra" class="comments-container">
+      <button id="fecharBarra" onclick="fecharBarra()">fechar</button>
+        <h1>Sugestões Atendidas😃</h1>
+        <div class="comments">
+          <div class="comment">
+            <h3 class="commenter">Joao da silva</h3>
+            <div class="seletor">Wifi ta ruim no bloco b</div>
+          </div>
+          <div class="comment read">
+           <h3 class="commenter">Joao da silva</h3>
+            <div class="seletor">Wifi ta ruim no bloco b</div>
+  
+          </div>
+        </div>
+      </div>
+      
+    <button id="abrirBarra" onclick="abrirBarra()">abrir</button>
+    <button id="deslogar" onclick="suap.logout()">logOff</button>
+        <main>
+ <div class="aux"> 
+    <div class="info">
+        <h1>IFRN em Evolução</h1>
+        <p>Vozes Construtivas para um Instituto Melhor</p>
+                </div>
+                <div class="logo"><img src="./../static/images/logoIF.png" alt=""></div>
+ </div>
+
+<div class="aux">
+
+    <div class="divlista">
+        <ul id="ulLista">
+          
+  
+             
+        </ul>
+        <a id="vermais" href="./fy.html">Ver mais</a>
+    </div>
+    <div class="divsugestao"> 
+        <textarea id="sugestao" type="text"  placeholder="Deixe sua sugestão:"></textarea>
+        <input type="button" id="enviar" onclick="enviar()" value="Enviar">
+    </div>
+    </div>
+
+        </main>
+        <script src="./../static/js/js.cookie.js"></script>          <!-- script para criacao de cookies -->
+		<script src="./../static/js/settings.js"></script>           <!-- script com as configuracoes de escopo de requisicao-->
+  	<script src="./../static/js/client.js"></script>   
+    <script>
+        function abrirBarra() {
+           var barra =  document.getElementById("barra")
+          
+            barra.style.left = "0px" 
+            barra.style.animationDuration = "1s"
+            
+        }
+        function fecharBarra() {
+           var barra =  document.getElementById("barra")
+           barra.style.animationDuration = "1s"
+            barra.style.left = "-50em"
+
+            
+        }
+        
+    </script>
+
+
+<script>
+   var lista =  document.getElementById("ulLista")
+  var msg = document.getElementById("sugestao")
+
+        var mensagens = []
+
+  var user;
+
+         var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
+      suap.init();
+      window.onload = isAuth();
+
+      function isAuth() {
+        var res;
+        if (suap.isAuthenticated()) {
+          console.log("to autenticado");
+          
+          var callback = function (response) {
+            res = response;
+        user = res.nome_registro;
+            console.log("usuario");
+            console.log(user);
+
+          };
+          suap.getResource(SCOPE, callback);
+        }
+      }
+
+      function toPageLogin(){
+        window.location.href = suap.getLoginURL()
+      }
+
+
+     
+      function enviar() {
+        var objMsg = {"user":user,"msg":msg.value, "like":0,"deslike":0}
+      mensagens.push(objMsg)
+      console.log(mensagens);
+      lista.innerHTML =""
+    updateList()
+      }
+
+      function updateList() {
+        msg.value = ""
+        mensagens.sort((a, b) => b.like - a.like);
+        lista.innerHTML =""
+      mensagens.forEach((element,index) => {
+        lista.innerHTML += `        
+       <li id='${index}'>    <div class="divcomentario">
+                <div> <span id="name">${element.user}</span>
+                 <p class="comentario">${element.msg} </p>
+             </div>
+             <div class="avaliacao">
+              <span>${element.like}</span>
+
+                 <button id="gostei" onclick='like(${index})'>
+                    <i class="fas fa-thumbs-up fa-xs" style="color: rgb(241, 241, 241)"></i>                
+                 </button>
+                 <span>${element.deslike}</span>
+                 <button id="naogostei" onclick='deslike(${index})'>
+                    <i class="fas fa-thumbs-down fa-xs" style="color: rgb(241, 241, 241)"></i> 
+                 </button>
+             </div> 
+             </div></li>`
+
+      });
+
+      }
+
+      function like(i) {
+       mensagens.forEach((value,index) =>{
+     
+         if (index == i) {
+          mensagens[i].like += 1
+             console.log("ok");
+         }
+       })
+
+       updateList()
+      }
+      function deslike(i) {
+        mensagens.forEach((value,index) =>{
+         if (index == i) {
+          mensagens[i].deslike += 1
+          
+         }
+       })
+       
+       updateList() 
+      }
+
+</script>
+</body>
+</html>

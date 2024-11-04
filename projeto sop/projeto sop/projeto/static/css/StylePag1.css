@@ -1,0 +1,100 @@
+body {
+   background-color: #9EE1A9;
+   margin: 0;
+   padding: 0;
+} 
+    
+.container {
+    background-color: #2F9E41;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 35vw;
+    height: 100vh;    
+}
+
+.coluna {
+    color: white;
+    align-items: center;
+    font-size: 35px;
+    padding: 20px;
+    padding-inline: 30px;
+    margin: 10px;
+}
+
+/*h1 {
+    color: white;
+    line-height: 0.2;
+    font-family: Arial;
+    font-size: 45px;
+    top: 25px;
+    left: 30px;
+    position: absolute;
+}
+
+h2 {
+    color: white;
+    font-weight: normal;
+    line-height: 0.5; 
+    font-family: Arial;
+    font-size: 26px;
+    top: 150px;
+    left: 30px;
+    position: absolute;
+    }
+ */
+ 
+ 
+h3 {
+    color: #2E742D;
+    top: 290px;
+    left: 745px;
+    font-family: Arial;
+    position: absolute;
+}
+    
+.figure, figure img{
+    width: 130px; 
+    height: 170px;
+    top: 120px;
+    left: 828px;
+    position: absolute;
+}    
+    
+#matricula {
+    background-color: #2F9E41;
+    border: none;
+    color: white;
+    border-radius: 9px;
+    width: 200px;
+    padding: 14px;
+    top: 360px;
+    left: 780px;
+    position: absolute;
+}
+    
+#matricula::placeholder {
+    color: white;
+}
+
+#senha::placeholder {
+    color: white;
+}
+    
+#entrar {
+    background-color: #2F9E41;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 9px;   
+    width: 227px;
+    padding: 13px;
+    top: 475px;
+    left: 780px;
+    position: absolute;    
+    cursor: pointer;
+}
+#entrar:hover{
+    background-color: #43b356; ;
+}

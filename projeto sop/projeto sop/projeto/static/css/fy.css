@@ -1,0 +1,42 @@
+body {
+    background-color: #9EE1A9;
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    }
+    
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;  
+    height: 50%; 
+    margin: 20px auto;
+    padding: 50px;
+  }    
+  
+  
+  #all-comments-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    overflow-y: auto;
+    background-color: #5AAE58;
+    padding: 35px; /* Adiciona algum espaço interno para a caixa amarela */
+    }
+  
+  .comment-all {
+    background-color: white;
+    border-radius: 7px;
+    padding: 20px;
+    word-wrap: break-word;
+    }
+  
+  a {
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 30px;
+    }
+  
+ 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./../static/css/StylePag1.css">
+  <script type="text/javascript" src="suap/client.js"></script>
+  <script type="text/javascript" src="suap/js.cookie.js"></script>
+  <script type="text/javascript" src="suap/settings.js"></script>
+  <link rel="icon" href="if logo.png">
+  
+  <title>Pag 1</title>
+</head>
+    <title> Opina IFSGA </title>
+
+<body>
+
+    <div class="container">
+        <div class="coluna">
+
+         Bem-Vindo Ao 
+         <br> "Opina IFSGA" </br> 
+        
+    
+        <p style="   font-family: 'Inter', sans-serif; 
+     font-weight: 300;
+        "> ㅤㅤNosso objetivo é criar 
+             um espaço inclusivo e 
+             colaborativo, onde 
+             alunos possam 
+             contribuir com suas 
+             sugestões e opiniões 
+             para promover 
+             mudanças positivas 
+             no nosso Campus. </p>
+        </div>   
+       
+    </div> 
+
+
+   <figure> <img src="./../static/images/if logo.png"> </figure>
+   <h3> Campus São Gonçalo do Amarante </h3>
+   
+   <button id="entrar" onclick="toPageLogin()"> Entrar com SUAP </button> 
+
+   <script src="./../static/js/js.cookie.js"></script>          <!-- script para criacao de cookies -->
+   <script src="./../static/js/settings.js"></script>           <!-- script com as configuracoes de escopo de requisicao-->
+   <script src="./../static/js/client.js"></script>             <!-- script com as classes do cliente de autenticacao -->
+   <script>
+     var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
+     suap.init();
+     window.onload = isAuth();
+
+     function isAuth() {
+       var res;
+       if (suap.isAuthenticated()) {
+        
+         window.location.href = '/home'
+         document.getElementById('div-login').style.display = 'none';
+         document.getElementById('div-logged').style.display = 'block';
+         
+         var callback = function (response) {
+           res = response;
+           document.getElementById('photo').setAttribute('src', SUAP_URL + res.foto);
+           document.getElementById('name').innerHTML = res.nome_registro;
+           document.getElementById('matricula').innerHTML = res.identificacao;
+           document.getElementById('email').innerHTML = res.email_google_classroom;
+         };
+         suap.getResource(SCOPE, callback);
+       }
+     }
+
+     function toPageLogin(){
+       window.location.href = suap.getLoginURL()
+     }
+   </script>
+
+</body>
+</html>

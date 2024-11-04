@@ -1,0 +1,303 @@
+body{
+    z-index: 0;
+    background-color: #9EE1A9;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+#concluidos{
+    color:#2a8539;
+    font-size: 15px;
+    font-weight: bolder;
+    border: none;
+    background-color:#9EE1A9;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
+
+#concluidos:hover{
+    color:#329c44; 
+}
+
+#fecharBarra{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+}
+
+#sair{
+    color: rgb(228, 20, 20);
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #9EE1A9;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+#sair:hover {
+    color: rgb(253, 81, 81);
+}
+
+#name{
+    font-size: 10px;
+}
+
+.info{
+    width: 48%;
+height: 28%;
+background: #2F9E41;
+border-radius: 15px;
+padding: 42px;
+margin: 20px;
+}
+
+main{
+    width:80% ;
+    height: 80%;
+    display: block;
+    justify-content: space-between;
+}
+
+h1{
+    margin: 0px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+
+}
+
+p{
+    font-size: 25px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+}
+img{
+    width: 35%;
+    height: 45%;
+    margin: 20px;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+
+}
+.divlista{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48%;
+    height: 9em;
+    background: #2F9E41;
+    border-radius: 15px;
+    padding: 42px;
+    margin: 20px;
+
+}
+.divsugestao{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  
+}
+.aux{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+#sugestao{
+    height: 9em;
+    width: 65%;
+    border-radius:6px ;
+    border: none;
+    margin-bottom: 15px;
+    background-color: #2F9E41 ;
+    color: white;
+    padding: 8px;
+    resize: none;
+}
+#sugestao::placeholder{
+    color: white;
+}
+#enviar{
+    cursor: pointer;
+    border: none;
+    background: #2F9E41;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    width:68%;
+    height: 4em;
+    border-radius:6px ;
+
+}
+#enviar:hover{
+    background: rgb(52, 163, 70);
+}
+textarea:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
+ul{
+    list-style: none;
+    padding: 0px;
+    width: 100%;
+    height: 200px;
+    overflow-y: auto;
+}
+span{
+    color: #4E8945;
+    padding-left: 1em;
+    margin-top: 1em;
+text-align: center;
+font-family: Inter;
+padding-top:5px ;
+font-size: 12px;
+font-weight: 700;
+}
+.comentario{
+color: #115214;
+margin: 8px;
+padding-left: 2em;
+font-family: Inter;
+font-size: 13px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.divcomentario{
+    text-align: justify;
+    width: 92% ;
+    min-height: 52px;
+    margin: 8px;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: space-between;
+}
+.avaliacao{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 10px;
+    margin-top: 5px;
+}
+
+.avaliacao button{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 15px;
+    height: 15px;
+    margin: 4px;
+    border: none;
+}
+#gostei{
+    background-color: #A3E286;
+}
+#naogostei{
+    background-color: #E29186;
+
+}
+#comment-section {    
+    width: 100%;
+    max-height: 500px;
+    margin: 8px;    
+    overflow-y: auto;  
+}
+
+.comment {
+    background-color: #D9D9D9;
+    border-radius: 8px;  
+    margin-bottom: 10px;
+    padding: 10px;
+    word-wrap: break-word;
+}
+.avaliacao span{
+    margin: 2px;
+    display: contents;
+}
+
+/* CSS BARRA DE ROLAGEM < */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .seletor::before {
+    content: '✔️';
+    margin-right: 10px; 
+    color: #2F9E41;
+    display: inline-block;
+    border: #2F9E41; 
+    float: right;
+        
+  }
+  
+  .comments-container {
+    opacity: 0.5; 
+    left: -50em;
+    position: absolute;
+    z-index: 1;
+    width: 270px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #63C952;
+    color: #FFFFFF;
+  }
+  #vermais{
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+  }
+  .comments {
+    text-align: justify;
+    color: #115214;
+    padding-top: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  .comment {
+    margin-bottom: 20px;
+    padding: 6%;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+
+  }
+  
+  .commenter {
+    margin: 0;
+    padding: 0;
+    margin-bottom:9px;
+    display: inline-block;
+    font-size:medium;
+    color: #4E8945;
+  }
+  
+  .read {
+    text-decoration: line-through solid #0000007A;
+
+  }
+  /* BARRA DE ROLAGEM CSS > */

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Para rodar o servidor voces precisarao instalar o python:
+    https://www.python.org/downloads/
+    Podem instalar a versao 3.11
+    Sigam o tutorial do proprio site:
+    https://python.org.br/instalacao-windows/
+
+    Depois de instala-lo verifique se o python esta visivel no terminal:
+    abram o cmd (Win+R e digite cmd ou pesquisem cmd e executem), depois digitem:
+    
+    python --version
+    
+    Vejam se aparece a versao que voces instalaram (3.11)
+    Para abrir o servidor html em python digitem no cmd o comando cd mover da pasta
+    atual para a pasta onde est'a o projeto de voces. cd <nome da pasta> faz entrar
+    na pasta, cd .. faz subir para a pasta acima. Usem isso para navegar pelo terminal.
+    Quando chegarem a pasta do projeto (a pasta que contem o index.html, o nome do arquivo
+    da pagina de voces deve ser esse), ai sim digitem isso para executar o servidor web:
+
+    python -m http.server 8888
+
+    Precisa ser a porta 8888 pois redirect do app do suap est'a para essa porta. Se fizeram
+    tudo certo, vai iniciar o servidor na pasta do seu projeto. Ai no navegador basta digitar:
+    
+    localhost:8888
+
+    que devera abrir a pagina que voces estao desenvolvendo. A partir dai, sempre usem
+    todo esse procedimento para iniciar os trabalhos (ir para a pastar, executar o servidor
+    web e comecar a programar)
+
+    Caso o python nao seja reconhecido, provavelmente voces precisarao inserir o path dele
+    nas variaveis de ambiente do seu SO. Usem esse tutorial para isso:
+    https://acervolima.com/como-adicionar-python-ao-windows-path/
+
+    Esse exemplo que estou enviando servira como base para voces colocarem nos seus codigos.
+    Tomei a liberdade de ja adicionar a parte que comentei (Pegar foto, nome, email e 
+    matricula) entao fica mais facil. Voces precisarao copiar os outros arquivos(client.js
+    js.cookie.js, settings.js) para a pasta do projeto de voces. O index daqui servira so
+    como base.
+    
+    De resto e fazer o que conversamos. Ate mais garotas!
+
+  -->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cliente SUAP Javascript</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+		<section class="cabecalho">
+      <div class="container">
+        <h1 class="title">Exemplo de cliente SUAP com Javascript</h1>
+      </div>
+	  </section>
+    <main class="principal">
+		  <div class="container">
+	  		<div id="div-login">
+					<h2>Você não está autenticado</h2>
+          <button type="button" id="suap-login" onclick="toPageLogin()">Login com SUAP</button>
+		  	</div>
+		  	<div id="div-logged">
+		  		<h2>Você está autenticado</h2>
+					<button type="button" id="suap-logout" onclick="suap.logout()">Encerrar Sessão</button>
+					<div>
+			  		<div><img id="photo" src="" alt="imgAluno"></div>
+						<div id="tabelaDiv">
+							<table id="tabela">
+                <tr>
+                  <td >Nome Aluno:</td><td id="name"></td>
+                </tr>
+                <tr>
+                  <td>Matricula:</td><td id="matricula"></td>
+                </tr>
+                <tr>
+                  <td>Email Aluno:</td><span id="email"></td>
+                </tr>
+              </table>
+						</div>
+					</div>
+	  		</div>
+		  </div>
+	  </main>
+		<script src="js.cookie.js"></script>          <!-- script para criacao de cookies -->
+		<script src="settings.js"></script>           <!-- script com as configuracoes de escopo de requisicao-->
+  	<script src="client.js"></script>             <!-- script com as classes do cliente de autenticacao -->
+    <script>
+      var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
+      suap.init();
+      window.onload = isAuth();
+
+      function isAuth() {
+        var res;
+        if (suap.isAuthenticated()) {
+         
+          window.location.href = './page2.html'
+          document.getElementById('div-login').style.display = 'none';
+          document.getElementById('div-logged').style.display = 'block';
+          
+          var callback = function (response) {
+            res = response;
+            document.getElementById('photo').setAttribute('src', SUAP_URL + res.foto);
+            document.getElementById('name').innerHTML = res.nome_registro;
+            document.getElementById('matricula').innerHTML = res.identificacao;
+            document.getElementById('email').innerHTML = res.email_google_classroom;
+          };
+          suap.getResource(SCOPE, callback);
+        }
+      }
+
+      function toPageLogin(){
+        window.location.href = suap.getLoginURL()
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+h1, h2, .container, #suap-login, #suap-logout{
+    margin: 5px;
+}
+
+.cabecalho .container{
+    background-color: lightskyblue;
+}
+
+
+#div-logged{
+    display: none;
+}
+
+#tabelaDiv{
+    width: 100%;
+}
+
+#tabela{
+    width: 65%;
+    border-collapse: collapse;
+}
+
+#photo{
+    padding: 5px;
+}
+
+th, td{
+    width: 50%;
+    border: 1px;
+    margin: 0px;
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
+}
+
+td:first-child{
+    width: 20%;
+}
